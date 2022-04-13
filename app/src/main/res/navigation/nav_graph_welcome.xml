@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_welcome"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.teamenergy.ui.welcome.fragments.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login" />
+
+    <action
+        android:id="@+id/action_global_loginFragment"
+        app:destination="@+id/loginFragment" />
+
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.teamenergy.ui.welcome.fragments.SignUpFragment"
+        android:label="SignUpFragment"
+        tools:layout="@layout/fragment_sign_up" />
+
+    <action
+        android:id="@+id/action_global_signUpFragment"
+        app:destination="@+id/signUpFragment" />
+
+    <fragment
+        android:id="@+id/selectCarFragment"
+        android:name="com.teamenergy.ui.selectCar.SelectCarFragment"
+        android:label="SelectCarFragment"
+        tools:layout="@layout/fragment_select_car">
+
+        <argument
+            android:name="type"
+            app:argType="com.teamenergy.proxy.model.ModelTypeEnum" />
+
+        <argument
+            android:name="carData"
+            app:argType="com.teamenergy.proxy.network.masterData.CarDto"
+            app:nullable="true" />
+
+    </fragment>
+
+    <action
+        android:id="@+id/action_global_selectCarFragment"
+        app:destination="@+id/selectCarFragment" />
+
+    <fragment
+        android:id="@+id/verifyPhoneNumberFragment"
+        android:name="com.teamenergy.ui.verify.VerifyPhoneNumberFragment"
+        android:label="VerifyPhoneNumberFragment"
+        tools:layout="@layout/fragment_verify_phone_number" />
+
+    <action
+        android:id="@+id/action_global_verifyPhoneNumberFragment"
+        app:destination="@+id/verifyPhoneNumberFragment" />
+
+</navigation>

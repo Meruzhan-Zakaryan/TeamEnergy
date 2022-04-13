@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    
+    <color name="slate_color">#19ABC2</color>
+    <color name="ripplyColor">#80000000</color>
+    <color name="white_transparent_color">#9affffff</color>
+    <color name="black_color_alpha87">#de000000</color>
+    <color name="black_color_alpha10">#19000000</color>
+    <color name="light_blue_color">#995476FF</color>
+    <color name="faux_blue_color">#4267b2</color>
+    <color name="steel_blue_color">#0077b5</color>
+    <color name="water_color">#03a9f4</color>
+    <color name="blue_gray_color">#3c4859</color>
+    <color name="light_gray_color">#d8d8d8</color>
+    <color name="rhino_color">#3C3C43</color>
+    <color name="shade_of_blue_color">#125476ff</color>
+    <color name="selective_yellow_color">#fbbb00</color>
+    <color name="flower_blue_color">#518ef8</color>
+    <color name="bright_green_color">#28b446</color>
+    <color name="salmon_pearl_color">#f14336</color>
+    <color name="rgb_color">#e6e6e6</color>
+    <color name="red_color">#F14336</color>
+    <color name="light_blue">#8EC1FF</color>
+    <color name="triadic_color">#F5986E</color>
+    <color name="orange_color">#F19241</color>
+    <color name="space_conversation_color">#E07CFF</color>
+    <color name="medium_orchid_color">#BE46FF</color>
+    <color name="plum_color">#C192FF</color>
+    <color name="medium_slade_color">#8D59FF</color>
+    <color name="full_transparent_color">#00000000</color>
+    <color name="black_color">#000000</color>
+    <color name="color_8">#66FFFFFF</color>
+    <color name="text_color">#254D66</color>
+</resources>
