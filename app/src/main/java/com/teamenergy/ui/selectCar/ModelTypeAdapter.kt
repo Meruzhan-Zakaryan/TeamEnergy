@@ -6,11 +6,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.teamenergy.databinding.ItemCarTypeBinding
+import com.teamenergy.proxy.domain.CarModel
 import com.teamenergy.proxy.network.masterData.CarModelDto
 
-class ModelTypeAdapter(private val onItemClick: (item: CarModelDto) -> Unit) : RecyclerView.Adapter<ModelTypeAdapter.ModelViewHolder>() {
+class ModelTypeAdapter(private val onItemClick: (item: CarModel) -> Unit) : RecyclerView.Adapter<ModelTypeAdapter.ModelViewHolder>() {
 
-    private val items = mutableListOf<CarModelDto>()
+    private val items = mutableListOf<CarModel>()
 
     private lateinit var context: Context
     private lateinit var layoutInflater: LayoutInflater
@@ -22,7 +23,7 @@ class ModelTypeAdapter(private val onItemClick: (item: CarModelDto) -> Unit) : R
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun update(items: List<CarModelDto>?) {
+    fun update(items: List<CarModel>?) {
         items?.let {
             this.items.clear()
             this.items.addAll(items)
@@ -47,7 +48,7 @@ class ModelTypeAdapter(private val onItemClick: (item: CarModelDto) -> Unit) : R
             }
         }
 
-        fun bind(item: CarModelDto) {
+        fun bind(item: CarModel) {
             binding.nameTextView.text = item.name
         }
     }

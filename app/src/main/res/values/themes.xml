@@ -81,4 +81,14 @@
         <item name="android:textColor">@color/color_8</item>
         <item name="android:textSize">12sp</item>
     </style>
+
+    <style name="CustomAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/shape_info_dialog</item>
+    </style>
+
+    <style name="ViewLineStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/light_gray_color</item>
+    </style>
 </resources>

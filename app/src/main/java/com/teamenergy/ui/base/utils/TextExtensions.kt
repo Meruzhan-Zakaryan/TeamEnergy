@@ -11,6 +11,8 @@ import android.view.View
 import android.widget.TextView
 import androidx.annotation.ColorRes
 import androidx.core.content.res.ResourcesCompat
+import kotlin.math.pow
+import kotlin.math.roundToInt
 
 fun TextView.setClickableText(
     string: String?,
@@ -60,4 +62,11 @@ fun SpannableString.color(color: Int, start: Int?, end: Int?): SpannableString {
     if (end != null) spanEndPoint = end
     this.setSpan(ForegroundColorSpan(color), spanStartPoint, spanEndPoint, 0)
     return this
+}
+
+fun Double.round(decimals: Int = 2): Double = "%.${decimals}f".format(this).toDouble()
+
+fun Double.roundTo(numFractionDigits: Int): Double {
+    val factor = 10.0.pow(numFractionDigits.toDouble())
+    return (this * factor).roundToInt() / factor
 }

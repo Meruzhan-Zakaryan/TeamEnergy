@@ -10,6 +10,7 @@ import com.teamenergy.databinding.FragmentAccountBinding
 import com.teamenergy.databinding.FragmentLoginBinding
 import com.teamenergy.databinding.FragmentNotificationBinding
 import com.teamenergy.teamenergy.BaseEnergyViewModel
+import com.teamenergy.ui.home.HomeActivity
 import org.koin.android.ext.android.inject
 
 
@@ -33,6 +34,11 @@ class NotificationFragment : Fragment() {
             fragment = this@NotificationFragment
         }
         return binding!!.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        (requireActivity() as HomeActivity).setBottomVisibility(true)
     }
 
 }

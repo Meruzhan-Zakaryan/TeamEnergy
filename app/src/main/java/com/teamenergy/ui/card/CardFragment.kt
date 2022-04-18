@@ -9,6 +9,7 @@ import com.teamenergy.R
 import com.teamenergy.databinding.FragmentCardBinding
 import com.teamenergy.databinding.FragmentScannerBinding
 import com.teamenergy.teamenergy.BaseEnergyViewModel
+import com.teamenergy.ui.home.HomeActivity
 import org.koin.android.ext.android.inject
 
 
@@ -29,5 +30,10 @@ class CardFragment : Fragment() {
             fragment = this@CardFragment
         }
         return binding!!.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        (requireActivity() as HomeActivity).setBottomVisibility(true)
     }
 }

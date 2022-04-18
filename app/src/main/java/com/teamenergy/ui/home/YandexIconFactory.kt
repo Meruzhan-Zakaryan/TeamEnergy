@@ -17,7 +17,8 @@ import com.yandex.runtime.ui_view.ViewProvider
 
 class YandexIconFactory(private val ctx: Context) {
     fun clusterImageProvider(clusterCount: Int): ImageProvider =
-        TextImageProvider(clusterCount.toString())
+        //TextImageProvider(clusterCount.toString())
+        TextImageProvider("")
 
     fun bubbledViewProvider(marker: MapMarker): StyledViewProvider =
         BubbledViewProvider(marker)

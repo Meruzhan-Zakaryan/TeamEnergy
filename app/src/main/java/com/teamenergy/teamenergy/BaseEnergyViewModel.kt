@@ -5,6 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.JsonObject
+import com.teamenergy.proxy.domain.Charger
+import com.teamenergy.proxy.domain.Master
+import com.teamenergy.proxy.mapper.ChargerMapper
+import com.teamenergy.proxy.mapper.MasterMapper
 import com.teamenergy.proxy.network.masterData.ChargerDto
 import com.teamenergy.proxy.network.masterData.LoginDto
 import com.teamenergy.proxy.network.masterData.MasterDto
@@ -20,8 +24,8 @@ class BaseEnergyViewModel(private val baseEnergyRepository: BaseEnergyRepository
     val errorMessages = MutableLiveData<String?>()
     var job: Job? = null
 
-    private val _getMasterLiveData = MutableLiveData<MasterDto?>()
-    val getMasterLiveData: LiveData<MasterDto?>
+    private val _getMasterLiveData = MutableLiveData<Master?>()
+    val getMasterLiveData: LiveData<Master?>
         get() = _getMasterLiveData
 
 
@@ -29,7 +33,7 @@ class BaseEnergyViewModel(private val baseEnergyRepository: BaseEnergyRepository
         viewModelScope.launch(getCoroutineContext()) {
             baseEnergyRepository.getMasterData(object : ApiResultCallback<MasterDto?> {
                 override fun onSuccess(response: MasterDto?) {
-                    _getMasterLiveData.value = response
+                    _getMasterLiveData.value = response?.let(MasterMapper.masterMapper)
                 }
 
                 override fun onError(response: String) {
@@ -144,9 +148,13 @@ class BaseEnergyViewModel(private val baseEnergyRepository: BaseEnergyRepository
         }
     }
 
-    private val _getAllChargersLiveData = MutableLiveData<ChargerDto?>()
-    val getAllChargersLiveData: LiveData<ChargerDto?>
+    private val _getAllChargersLiveData = MutableLiveData<Charger?>()
+    val getAllChargersLiveData: LiveData<Charger?>
         get() = _getAllChargersLiveData
+
+    fun removeGetAllChargersLiveData() {
+        _getAllChargersLiveData.value = null
+    }
 
     private val _getAllChargersErrorLiveData = MutableLiveData<String?>()
     val getAllChargersErrorLiveData: LiveData<String?>
@@ -160,7 +168,8 @@ class BaseEnergyViewModel(private val baseEnergyRepository: BaseEnergyRepository
         viewModelScope.launch(getCoroutineContext()) {
             baseEnergyRepository.getAllChargers(object : ApiResultCallback<ChargerDto?> {
                 override fun onSuccess(response: ChargerDto?) {
-                    _getAllChargersLiveData.value = response
+                    _getAllChargersLiveData.value = response?.let(ChargerMapper.chargerMapper)
+//                    _getAllChargersLiveData.value = response
                 }
 
                 override fun onError(response: String) {
@@ -185,6 +194,147 @@ class BaseEnergyViewModel(private val baseEnergyRepository: BaseEnergyRepository
                     _getAllChargersErrorLiveData.value = response
                 }
             }, getAllChargersRequest)
+        }
+    }
+
+    private val _sendPasswordResetCodeLiveData = MutableLiveData<JsonObject?>()
+    val sendPasswordResetCodeLiveData: LiveData<JsonObject?>
+        get() = _sendPasswordResetCodeLiveData
+
+    private val _sendPasswordResetCodeErrorLiveData = MutableLiveData<String?>()
+    val sendPasswordResetCodeErrorLiveData: LiveData<String?>
+        get() = _sendPasswordResetCodeErrorLiveData
+
+    fun removeSendPasswordResetCodeErrorLivedata() {
+        _sendPasswordResetCodeErrorLiveData.value = null
+    }
+
+    fun sendPasswordResetCode(resetPasswordRequest: JsonObject) {
+        viewModelScope.launch(getCoroutineContext()) {
+            baseEnergyRepository.sendPasswordResetCode(object : ApiResultCallback<JsonObject?> {
+                override fun onSuccess(response: JsonObject?) {
+                    _sendPasswordResetCodeLiveData.value = response
+                }
+
+                override fun onError(response: String) {
+                    _sendPasswordResetCodeErrorLiveData.value = response
+                }
+            }, resetPasswordRequest)
+        }
+    }
+
+
+    private val _resetPasswordLiveData = MutableLiveData<JsonObject?>()
+    val resetPasswordLiveData: LiveData<JsonObject?>
+        get() = _resetPasswordLiveData
+
+    private val _resetPasswordErrorLiveData = MutableLiveData<String?>()
+    val resetPasswordErrorLiveData: LiveData<String?>
+        get() = _resetPasswordErrorLiveData
+
+    fun removeResetPasswordErrorLivedata() {
+        _resetPasswordErrorLiveData.value = null
+    }
+
+    fun resetPassword(resetPasswordRequest: JsonObject) {
+        viewModelScope.launch(getCoroutineContext()) {
+            baseEnergyRepository.resetPassword(object : ApiResultCallback<JsonObject?> {
+                override fun onSuccess(response: JsonObject?) {
+                    _resetPasswordLiveData.value = response
+                }
+
+                override fun onError(response: String) {
+                    _resetPasswordErrorLiveData.value = response
+                }
+            }, resetPasswordRequest)
+        }
+    }
+
+    private val _logoutLiveData = MutableLiveData<JsonObject?>()
+    val logoutLiveData: LiveData<JsonObject?>
+        get() = _logoutLiveData
+
+    fun logout() {
+        viewModelScope.launch(getCoroutineContext()) {
+            baseEnergyRepository.logout(object : ApiResultCallback<JsonObject?> {
+                override fun onSuccess(response: JsonObject?) {
+                    _logoutLiveData.value = response
+                }
+
+                override fun onError(response: String) {
+                    print(response)
+                }
+
+            })
+        }
+    }
+
+    private val _checkEmailLiveData = MutableLiveData<String?>()
+    val checkEmailLiveData: LiveData<String?>
+        get() = _checkEmailLiveData
+
+    fun removeCheckEmailLiveData(){
+        _checkEmailLiveData.value = null
+    }
+
+    fun checkEmail(email: String) {
+        viewModelScope.launch(getCoroutineContext()) {
+            baseEnergyRepository.checkEmail(object : ApiResultCallback<String?> {
+                override fun onSuccess(response: String?) {
+                    _checkEmailLiveData.value = response
+                }
+
+                override fun onError(response: String) {
+                    print(response)
+                }
+
+            }, email)
+        }
+    }
+
+    private val _checkUsernameLiveData = MutableLiveData<String?>()
+    val checkUsernameLiveData: LiveData<String?>
+        get() = _checkUsernameLiveData
+
+    fun removeCheckUsernameLiveData(){
+        _checkUsernameLiveData.value = null
+    }
+
+    fun checkUsername(username: String) {
+        viewModelScope.launch(getCoroutineContext()) {
+            baseEnergyRepository.checkUsername(object : ApiResultCallback<String?> {
+                override fun onSuccess(response: String?) {
+                    _checkUsernameLiveData.value = response
+                }
+
+                override fun onError(response: String) {
+                    print(response)
+                }
+
+            }, username)
+        }
+    }
+
+    private val _checkPhoneLiveData = MutableLiveData<String?>()
+    val checkPhoneLiveData: LiveData<String?>
+        get() = _checkPhoneLiveData
+
+    fun removeCheckPhoneData(){
+        _checkPhoneLiveData.value = null
+    }
+
+    fun checkPhone(phone: String) {
+        viewModelScope.launch(getCoroutineContext()) {
+            baseEnergyRepository.checkPhoneNumber(object : ApiResultCallback<String?> {
+                override fun onSuccess(response: String?) {
+                    _checkPhoneLiveData.value = response
+                }
+
+                override fun onError(response: String) {
+                    print(response)
+                }
+
+            }, phone)
         }
     }
 }

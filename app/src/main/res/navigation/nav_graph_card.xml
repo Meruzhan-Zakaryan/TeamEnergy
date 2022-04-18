@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/cardFakeFragment"
-        android:name="com.teamenergy.ui.base.fragment.FakeFragment"
+        android:name="com.teamenergy.ui.card.CardFragment"
         android:label="" />
 
 </navigation>

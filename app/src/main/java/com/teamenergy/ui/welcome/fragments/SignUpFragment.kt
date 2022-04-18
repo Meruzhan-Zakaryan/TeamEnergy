@@ -13,6 +13,8 @@ import androidx.navigation.fragment.findNavController
 import com.google.gson.JsonObject
 import com.teamenergy.R
 import com.teamenergy.databinding.FragmentSignUpBinding
+import com.teamenergy.proxy.domain.Car
+import com.teamenergy.proxy.domain.CarModel
 import com.teamenergy.proxy.model.ModelTypeEnum
 import com.teamenergy.proxy.network.masterData.CarDto
 import com.teamenergy.proxy.network.masterData.CarModelDto
@@ -29,8 +31,12 @@ class SignUpFragment : Fragment() {
 
     private var binding: FragmentSignUpBinding? = null
     private val viewModel by inject<BaseEnergyViewModel>()
-    private var selectedCar: CarDto? = null
-    private var selectedModel: CarModelDto? = null
+    private var selectedCar: Car? = null
+    private var selectedModel: CarModel? = null
+    private var emailCheck: Boolean = false
+    private var phoneCheck: Boolean = false
+    private var usernameCheck: Boolean = false
+    private var registerRequest = JsonObject()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -81,8 +87,8 @@ class SignUpFragment : Fragment() {
             findNavController().navigate(SignUpFragmentDirections.actionGlobalSelectCarFragment(ModelTypeEnum.MODEL, selectedCar))
         }
         binding?.loginButton?.setOnClickListener {
-            val jsonObject = JsonObject()
-            if (binding?.nameEditText?.text.toString().isNotEmpty() &&
+            if (
+                binding?.nameEditText?.text.toString().isNotEmpty() &&
                 binding?.passwordEditText?.text.toString().isNotEmpty() &&
                 binding?.phoneEditText?.text.toString().isNotEmpty() &&
                 binding?.emailEditText?.text.toString().isNotEmpty() &&
@@ -90,14 +96,16 @@ class SignUpFragment : Fragment() {
                 !selectedModel?.carModelId?.equals("Model")!!
             ) {
                 binding?.progressBarLayout?.visibility = View.VISIBLE
-                jsonObject.addProperty("userName", binding?.nameEditText?.text.toString())
-                jsonObject.addProperty("password", binding?.passwordEditText?.text.toString())
-                jsonObject.addProperty("mobile", binding?.phoneEditText?.text.toString())
-                jsonObject.addProperty("email", binding?.emailEditText?.text.toString())
-                jsonObject.addProperty("carVendorId", selectedCar?.carVendorId)
-                jsonObject.addProperty("carModelId", selectedModel?.carModelId)
+                registerRequest.addProperty("userName", binding?.nameEditText?.text.toString())
+                registerRequest.addProperty("password", binding?.passwordEditText?.text.toString())
+                registerRequest.addProperty("mobile", binding?.phoneEditText?.text.toString())
+                registerRequest.addProperty("email", binding?.emailEditText?.text.toString())
+                registerRequest.addProperty("carVendorId", selectedCar?.carVendorId)
+                registerRequest.addProperty("carModelId", selectedModel?.carModelId)
 
-                viewModel.register(jsonObject)
+                viewModel.checkPhone(binding?.phoneEditText?.text.toString())
+                viewModel.checkEmail(binding?.emailEditText?.text.toString())
+                viewModel.checkUsername(binding?.nameEditText?.text.toString())
             } else {
                 binding?.progressBarLayout?.visibility = View.GONE
                 Toast.makeText(requireContext(), "Invalid field", Toast.LENGTH_SHORT).show()
@@ -110,13 +118,13 @@ class SignUpFragment : Fragment() {
         viewModel.getMasterLiveData.observe(viewLifecycleOwner) {
             masterDataLiveData.value = it
         }
-        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<CarDto?>(SelectCarFragment.CAR_RESULT_CODE)?.observe(viewLifecycleOwner) { carData ->
+        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<Car?>(SelectCarFragment.CAR_RESULT_CODE)?.observe(viewLifecycleOwner) { carData ->
             selectedCar = carData
             binding?.carTypetextView?.setTextColor(R.color.black_color_alpha87)
             binding?.carTypetextView?.text = carData?.name
         }
 
-        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<CarModelDto?>(SelectCarFragment.MODEL_RESULT_CODE)?.observe(viewLifecycleOwner) { carModelData ->
+        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<CarModel?>(SelectCarFragment.MODEL_RESULT_CODE)?.observe(viewLifecycleOwner) { carModelData ->
             selectedModel = carModelData
             binding?.carModelTypeTextView?.setTextColor(R.color.black_color_alpha87)
             binding?.carModelTypeTextView?.text = carModelData.name
@@ -133,6 +141,49 @@ class SignUpFragment : Fragment() {
             error ?: return@observe
             Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
             viewModel.resetErrorLivedata()
+        }
+
+        viewModel.checkEmailLiveData.observe(viewLifecycleOwner) {response->
+            binding?.progressBarLayout?.visibility = View.GONE
+            response?:return@observe
+            if (response == "available") {
+                emailCheck = true
+                if (emailCheck && phoneCheck && usernameCheck) {
+                    binding?.progressBarLayout?.visibility = View.VISIBLE
+                    viewModel.register(registerRequest)
+                }
+            } else {
+                Toast.makeText(requireContext(), "Email $response", Toast.LENGTH_SHORT).show()
+            }
+            viewModel.removeCheckEmailLiveData()
+        }
+        viewModel.checkUsernameLiveData.observe(viewLifecycleOwner) {response->
+            binding?.progressBarLayout?.visibility = View.GONE
+            response?:return@observe
+            if (response == "available") {
+                usernameCheck = true
+                if (emailCheck && phoneCheck && usernameCheck) {
+                    binding?.progressBarLayout?.visibility = View.VISIBLE
+                    viewModel.register(registerRequest)
+                }
+            } else {
+                Toast.makeText(requireContext(), "Username $response", Toast.LENGTH_SHORT).show()
+            }
+            viewModel.removeCheckUsernameLiveData()
+        }
+        viewModel.checkPhoneLiveData.observe(viewLifecycleOwner) {response->
+            binding?.progressBarLayout?.visibility = View.GONE
+            response?:return@observe
+            if (response == "available") {
+                emailCheck = true
+                if (emailCheck && phoneCheck && usernameCheck) {
+                    binding?.progressBarLayout?.visibility = View.VISIBLE
+                    viewModel.register(registerRequest)
+                }
+            } else {
+                Toast.makeText(requireContext(), "Phone $response", Toast.LENGTH_SHORT).show()
+            }
+            viewModel.removeCheckPhoneData()
         }
     }
 }

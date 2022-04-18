@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:minWidth="280dp"
+        android:minHeight="460dp"
+        android:background="@drawable/shape_info_dialog">
+
+        <TextView
+            android:id="@+id/infoTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="Information"
+            android:textColor="@color/text_color"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/lvl2NoCommercialIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/ic_lvl2_no_commercial"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/infoTitle" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/lvl2NoCommercialIcon"
+            app:layout_constraintTop_toTopOf="@id/lvl2NoCommercialIcon"
+            app:layout_constraintBottom_toBottomOf="@id/lvl2NoCommercialIcon"
+            android:layout_marginHorizontal="20dp"
+            android:text="Lvl2 non-commercial"
+            android:textColor="@color/text_color"
+            android:textSize="16sp"/>
+
+        <ImageView
+            android:id="@+id/fastNoCommercialIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/ic_fast_non_commercial"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lvl2NoCommercialIcon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/fastNoCommercialIcon"
+            app:layout_constraintTop_toTopOf="@id/fastNoCommercialIcon"
+            app:layout_constraintBottom_toBottomOf="@id/fastNoCommercialIcon"
+            android:layout_marginHorizontal="20dp"
+            android:text="Fast non-commercial"
+            android:textColor="@color/text_color"
+            android:textSize="16sp"/>
+
+        <ImageView
+            android:id="@+id/lvl2CommercialIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/ic_lvl2_commercial"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fastNoCommercialIcon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/lvl2CommercialIcon"
+            app:layout_constraintTop_toTopOf="@id/lvl2CommercialIcon"
+            app:layout_constraintBottom_toBottomOf="@id/lvl2CommercialIcon"
+            android:layout_marginHorizontal="20dp"
+            android:text="Lvl2 commercial"
+            android:textColor="@color/text_color"
+            android:textSize="16sp"/>
+
+        <ImageView
+            android:id="@+id/fastCommercialIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/ic_fast_commercial"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lvl2CommercialIcon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/fastCommercialIcon"
+            app:layout_constraintTop_toTopOf="@id/fastCommercialIcon"
+            app:layout_constraintBottom_toBottomOf="@id/fastCommercialIcon"
+            android:layout_marginHorizontal="20dp"
+            android:text="Fast commercial"
+            android:textColor="@color/text_color"
+            android:textSize="16sp"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="20dp"
+            android:background="@drawable/shape_status_layout"
+            app:layout_constraintTop_toBottomOf="@id/fastCommercialIcon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageView
+                android:id="@+id/availableIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_round_green"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="14dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/availableIcon"
+                app:layout_constraintTop_toTopOf="@id/availableIcon"
+                app:layout_constraintBottom_toBottomOf="@id/availableIcon"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/text_color"
+                android:text="Available"
+                android:textSize="16sp"/>
+
+            <ImageView
+                android:id="@+id/busyIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_round_yellow"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/availableIcon"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="14dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/busyIcon"
+                app:layout_constraintTop_toTopOf="@id/busyIcon"
+                app:layout_constraintBottom_toBottomOf="@id/busyIcon"
+                android:layout_marginStart="10dp"
+                android:text="Busy"
+                android:textColor="@color/text_color"
+                android:textSize="16sp"/>
+
+            <ImageView
+                android:id="@+id/disabledIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_round_red"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/busyIcon"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="14dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/disabledIcon"
+                app:layout_constraintTop_toTopOf="@id/disabledIcon"
+                app:layout_constraintBottom_toBottomOf="@id/disabledIcon"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/text_color"
+                android:text="Disabled"
+                android:textSize="16sp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

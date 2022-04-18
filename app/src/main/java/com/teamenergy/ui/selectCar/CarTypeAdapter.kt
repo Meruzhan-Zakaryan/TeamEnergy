@@ -6,11 +6,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.teamenergy.databinding.ItemCarTypeBinding
+import com.teamenergy.proxy.domain.Car
 import com.teamenergy.proxy.network.masterData.CarDto
 
-class CarTypeAdapter(private val onItemClick: (item: CarDto) -> Unit) : RecyclerView.Adapter<CarTypeAdapter.CarViewHolder>() {
+class CarTypeAdapter(private val onItemClick: (item: Car) -> Unit) : RecyclerView.Adapter<CarTypeAdapter.CarViewHolder>() {
 
-    private val items = mutableListOf<CarDto>()
+    private val items = mutableListOf<Car>()
 
     private lateinit var context: Context
     private lateinit var layoutInflater: LayoutInflater
@@ -22,7 +23,7 @@ class CarTypeAdapter(private val onItemClick: (item: CarDto) -> Unit) : Recycler
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun update(items: List<CarDto>?) {
+    fun update(items: List<Car>?) {
         items?.let {
             this.items.clear()
             this.items.addAll(items)
@@ -47,7 +48,7 @@ class CarTypeAdapter(private val onItemClick: (item: CarDto) -> Unit) : Recycler
             }
         }
 
-        fun bind(item: CarDto) {
+        fun bind(item: Car) {
             binding.nameTextView.text = item.name
         }
     }

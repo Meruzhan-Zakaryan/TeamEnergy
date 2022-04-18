@@ -21,7 +21,7 @@ data class ChargerItemDto(
     @SerializedName("chargePointId")
     val chargePointId: String?,
     @SerializedName("connectors")
-    val connectors: List<Connector>?,
+    val connectors: List<ConnectorDto>?,
     @SerializedName("key")
     val key: String?,
     @SerializedName("latitude")
@@ -36,7 +36,7 @@ data class ChargerItemDto(
     val status: String?
 ):Serializable
 
-data class Connector(
+data class ConnectorDto(
     @SerializedName("connectorId")
     val connectorId: String?,
     @SerializedName("connectorType")

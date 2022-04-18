@@ -38,4 +38,6 @@
     <color name="black_color">#000000</color>
     <color name="color_8">#66FFFFFF</color>
     <color name="text_color">#254D66</color>
+    <color name="green_color">#37D550</color>
+    <color name="yellow_color">#FBDB00</color>
 </resources>

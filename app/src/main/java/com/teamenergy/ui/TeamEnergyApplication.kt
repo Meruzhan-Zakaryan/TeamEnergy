@@ -5,6 +5,7 @@ import android.content.res.Configuration
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.MutableLiveData
 import com.google.zxing.integration.android.IntentResult
+import com.teamenergy.proxy.domain.Master
 import com.teamenergy.proxy.network.masterData.LoginDto
 import com.teamenergy.proxy.network.masterData.MasterDto
 import com.teamenergy.proxy.network.masterData.UserDto
@@ -26,7 +27,8 @@ class EnergyApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
+        MapKitFactory.setApiKey("37f0a092-df73-4117-a155-61aa5c7e780d")
+        MapKitFactory.initialize(this)
         startKoin {
             androidLogger(Level.ERROR)
             androidContext(this@EnergyApplication)
@@ -46,7 +48,7 @@ class EnergyApplication : Application() {
         lateinit var defaultLocale: Locale
 
         val networkStateLiveData: MutableLiveData<Boolean> = MutableLiveData()
-        val masterDataLiveData: MutableLiveData<MasterDto> = MutableLiveData()
+        val masterDataLiveData: MutableLiveData<Master> = MutableLiveData()
         val loginDataLiveData: MutableLiveData<LoginDto> = MutableLiveData()
         val userDataLiveData: MutableLiveData<UserDto> = MutableLiveData()
         val qrScannerResultLiveData: MutableLiveData<IntentResult?> = MutableLiveData()

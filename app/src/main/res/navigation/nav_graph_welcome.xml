@@ -37,7 +37,7 @@
 
         <argument
             android:name="carData"
-            app:argType="com.teamenergy.proxy.network.masterData.CarDto"
+            app:argType="com.teamenergy.proxy.domain.Car"
             app:nullable="true" />
 
     </fragment>
@@ -55,5 +55,52 @@
     <action
         android:id="@+id/action_global_verifyPhoneNumberFragment"
         app:destination="@+id/verifyPhoneNumberFragment" />
+
+    <fragment
+        android:id="@+id/forgotPasswordFragment"
+        android:name="com.teamenergy.ui.reset.ForgotPasswordFragment"
+        android:label="ForgotPasswordFragment"
+        tools:layout="@layout/fragment_forgot_password" />
+
+    <action
+        android:id="@+id/action_global_forgotPasswordFragment"
+        app:destination="@+id/forgotPasswordFragment" />
+
+    <fragment
+        android:id="@+id/resetPasswordVerifyCodeFragment"
+        android:name="com.teamenergy.ui.reset.ResetPasswordVerifyCodeFragment"
+        android:label="ResetPasswordVerifyCodeFragment"
+        tools:layout="@layout/fragment_reset_password_verify_code">
+
+        <argument
+            android:name="number"
+            app:argType="string" />
+
+    </fragment>
+
+    <action
+        android:id="@+id/action_global_resetPasswordVerifyCodeFragment"
+        app:destination="@+id/resetPasswordVerifyCodeFragment" />
+
+
+    <fragment
+        android:id="@+id/resetPasswordFragment"
+        android:name="com.teamenergy.ui.reset.ResetPasswordFragment"
+        android:label="ResetPasswordFragment"
+        tools:layout="@layout/fragment_reset_password">
+
+        <argument
+            android:name="number"
+            app:argType="string" />
+
+        <argument
+            android:name="code"
+            app:argType="string" />
+
+    </fragment>
+
+    <action
+        android:id="@+id/action_global_resetPasswordFragment"
+        app:destination="@+id/resetPasswordFragment" />
 
 </navigation>

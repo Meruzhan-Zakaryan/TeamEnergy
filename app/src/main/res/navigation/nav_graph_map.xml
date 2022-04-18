@@ -1,11 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_map"
     app:startDestination="@+id/mapFakeFragment">
 
     <fragment
         android:id="@+id/mapFakeFragment"
-        android:name="com.teamenergy.ui.base.fragment.FakeFragment"
-        android:label="" />
+        android:name="com.teamenergy.ui.home.MapFragment"
+        android:label="">
+        <argument
+            android:name="canGetChargers"
+            android:defaultValue="true"
+            app:argType="boolean" />
+    </fragment>
+
+    <action
+        android:id="@+id/action_global_mapFragment"
+        app:destination="@+id/mapFakeFragment" />
+
+    <fragment
+        android:id="@+id/chargerInfoFragment"
+        android:name="com.teamenergy.ui.chargerInfo.ChargerInfoFragment"
+        android:label="ChargerInfoFragment"
+        tools:layout="@layout/fragment_charger_info">
+
+        <argument
+            android:name="charger"
+            app:argType="com.teamenergy.proxy.domain.ChargerItem" />
+
+    </fragment>
+
+    <action
+        android:id="@+id/action_global_chargerInfoFragment"
+        app:destination="@+id/chargerInfoFragment" />
+
+    <fragment
+        android:id="@+id/fullScreenMapFragment"
+        android:name="com.teamenergy.ui.mapfullScreen.FullScreenMapFragment"
+        android:label="FullScreenMapFragment"
+        tools:layout="@layout/fragment_full_screen_map">
+
+        <argument
+            android:name="charger"
+            app:argType="com.teamenergy.proxy.domain.ChargerItem" />
+
+    </fragment>
+
+    <action
+        android:id="@+id/action_global_fullScreenMapFragment"
+        app:destination="@+id/fullScreenMapFragment" />
+
+    <fragment
+        android:id="@+id/filterFragment"
+        android:name="com.teamenergy.ui.filter.FilterFragment"
+        android:label="FilterFragment"
+        tools:layout="@layout/fragment_filter" />
+
+    <action
+        android:id="@+id/action_global_filterFragment"
+        app:destination="@+id/filterFragment" />
 </navigation>

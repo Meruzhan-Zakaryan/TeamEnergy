@@ -7,34 +7,34 @@
         android:icon="@drawable/ic_menu_map"
         app:showAsAction="ifRoom"
         android:enabled="true"
-        android:title="" />
+        android:title="Map" />
 
     <item
         android:id="@id/nav_graph_card"
         android:icon="@drawable/ic_menu_card"
         app:showAsAction="ifRoom"
         android:enabled="true"
-        android:title="" />
+        android:title="Cards" />
 
     <item
         android:id="@id/nav_graph_scanner"
         android:icon="@drawable/ic_menu_scanner"
         app:showAsAction="ifRoom"
         android:enabled="true"
-        android:title=""/>
+        android:title="Scanner"/>
 
     <item
         android:id="@id/nav_graph_notification"
         android:icon="@drawable/ic_menu_notification"
         app:showAsAction="ifRoom"
         android:enabled="true"
-        android:title="" />
+        android:title="Notifications" />
 
     <item
         android:id="@id/nav_graph_account"
         android:icon="@drawable/ic_menu_account"
         app:showAsAction="ifRoom"
         android:enabled="true"
-        android:title="" />
+        android:title="Profile" />
 
 </menu>

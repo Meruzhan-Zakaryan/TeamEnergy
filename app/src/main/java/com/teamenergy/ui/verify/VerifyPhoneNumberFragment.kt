@@ -14,6 +14,7 @@ import com.teamenergy.databinding.FragmentSignUpBinding
 import com.teamenergy.databinding.FragmentVerifyPhoneNumberBinding
 import com.teamenergy.teamenergy.BaseEnergyViewModel
 import com.teamenergy.ui.EnergyApplication.Companion.userDataLiveData
+import com.teamenergy.ui.base.utils.SharedPreferenceUtils
 import com.teamenergy.ui.base.utils.setClickableText
 import com.teamenergy.ui.base.utils.spannableUnderline
 import com.teamenergy.ui.home.HomeActivity
@@ -76,6 +77,7 @@ class VerifyPhoneNumberFragment : Fragment() {
         viewModel.verifyPhoneNumberLiveData.observe(viewLifecycleOwner) { verifyData ->
             binding?.progressBarLayout?.visibility = View.GONE
             verifyData ?: return@observe
+            //TODO add data to preferances
             startActivity(Intent(requireActivity(), HomeActivity::class.java))
         }
         viewModel.verifyPhoneNumberErrorLiveData.observe(viewLifecycleOwner) { error ->

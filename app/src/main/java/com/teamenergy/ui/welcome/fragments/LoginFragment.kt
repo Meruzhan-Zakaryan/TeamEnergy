@@ -8,26 +8,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.google.gson.JsonElement
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import com.teamenergy.R
 import com.teamenergy.databinding.FragmentLoginBinding
-import com.teamenergy.databinding.FragmentSignUpBinding
 import com.teamenergy.teamenergy.BaseEnergyViewModel
 import com.teamenergy.ui.EnergyApplication.Companion.loginDataLiveData
 import com.teamenergy.ui.EnergyApplication.Companion.masterDataLiveData
-import com.teamenergy.ui.base.utils.JsonBuilder
-import com.teamenergy.ui.base.utils.setClickableText
-import com.teamenergy.ui.base.utils.spannableColor
-import com.teamenergy.ui.base.utils.spannableUnderline
+import com.teamenergy.ui.base.utils.*
 import com.teamenergy.ui.home.HomeActivity
-import com.teamenergy.ui.welcome.WelcomeActivity
-import org.json.JSONObject
 import org.koin.android.ext.android.inject
 
 class LoginFragment : Fragment() {
@@ -68,6 +58,15 @@ class LoginFragment : Fragment() {
         binding?.signUpTextView?.setClickableText(text, startIndex, endIndex, R.color.slate_color) {
             findNavController().navigate(R.id.action_global_signUpFragment)
         }
+
+        val forgetPassword = resources.getString(R.string.forget_password)
+        binding?.forgotPasswordTextView?.text = forgetPassword
+        val start = forgetPassword.indexOf(forgetPassword)
+        val end = forgetPassword.length
+
+        binding?.forgotPasswordTextView?.setClickableText(forgetPassword, start, end, R.color.slate_color) {
+            findNavController().navigate(R.id.action_global_forgotPasswordFragment)
+        }
     }
 
     private fun setupListeners() {
@@ -91,6 +90,7 @@ class LoginFragment : Fragment() {
             binding?.progressBarLayout?.visibility = View.GONE
             loginData?.data ?: return@observe
             loginDataLiveData.value = loginData
+            SharedPreferenceUtils().setUserData(requireActivity(), loginData)
             startActivity(Intent(requireActivity(), HomeActivity::class.java))
             requireActivity().finish()
         }

@@ -9,7 +9,13 @@
         android:id="@+id/mapFragment"
         android:name="com.teamenergy.ui.home.MapFragment"
         android:label="MapFragment"
-        tools:layout="@layout/fragment_map" />
+        tools:layout="@layout/fragment_map" >
+
+        <argument
+            android:name="canGetChargers"
+            app:argType="boolean"
+            android:defaultValue="true"/>
+    </fragment>
 
     <action
         android:id="@+id/action_global_mapFragment"
@@ -55,5 +61,48 @@
     <action
         android:id="@+id/action_global_accountFragment"
         app:destination="@+id/accountFragment" />
+
+    <fragment
+        android:id="@+id/chargerInfoFragment"
+        android:name="com.teamenergy.ui.chargerInfo.ChargerInfoFragment"
+        android:label="ChargerInfoFragment"
+        tools:layout="@layout/fragment_charger_info">
+
+        <argument
+            android:name="charger"
+            app:argType="com.teamenergy.proxy.domain.ChargerItem" />
+
+    </fragment>
+
+    <action
+        android:id="@+id/action_global_chargerInfoFragment"
+        app:destination="@+id/chargerInfoFragment" />
+
+    <fragment
+        android:id="@+id/fullScreenMapFragment"
+        android:name="com.teamenergy.ui.mapfullScreen.FullScreenMapFragment"
+        android:label="FullScreenMapFragment"
+        tools:layout="@layout/fragment_full_screen_map">
+
+        <argument
+            android:name="charger"
+            app:argType="com.teamenergy.proxy.domain.ChargerItem" />
+
+    </fragment>
+
+    <action
+        android:id="@+id/action_global_fullScreenMapFragment"
+        app:destination="@+id/fullScreenMapFragment" />
+
+    <fragment
+        android:id="@+id/filterFragment"
+        android:name="com.teamenergy.ui.filter.FilterFragment"
+        android:label="FilterFragment"
+        tools:layout="@layout/fragment_filter" />
+
+    <action
+        android:id="@+id/action_global_filterFragment"
+        app:destination="@+id/filterFragment" />
+
 
 </navigation>

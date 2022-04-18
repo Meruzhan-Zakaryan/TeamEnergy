@@ -23,7 +23,18 @@ data class Data(
     @SerializedName("userId")
     val userId: String?,
     @SerializedName("userName")
-    val userName: String?
+    val userName: String?,
+    @SerializedName("email")
+    val email: String?,
+    @SerializedName("cars")
+    val carsList: List<Car?>
+) : Serializable
+
+data class Car(
+    @SerializedName("carVendor")
+    val carVendor: String?,
+    @SerializedName("carModel")
+    val carModel: String?
 ) : Serializable
 
 data class Error(

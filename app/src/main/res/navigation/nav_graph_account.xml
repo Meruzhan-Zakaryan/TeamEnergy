@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/accountFakeFragment"
-        android:name="com.teamenergy.ui.base.fragment.FakeFragment"
+        android:name="com.teamenergy.ui.account.AccountFragment"
         android:label="" />
 </navigation>

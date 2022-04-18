@@ -4,7 +4,10 @@ import android.app.Activity
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Spinner
+import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import com.google.zxing.integration.android.IntentIntegrator
 import com.teamenergy.ui.base.CaptureActivityPortrait
 
@@ -45,3 +48,5 @@ fun Activity.openQRScanner(title: String) {
     intentIntegrator.setBeepEnabled(true)
     intentIntegrator.initiateScan()
 }
+
+fun NavController.clearBackStack() = popBackStack(graph.startDestination, false)

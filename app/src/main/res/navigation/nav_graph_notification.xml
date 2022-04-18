@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/notificationFakeFragment"
-        android:name="com.teamenergy.ui.base.fragment.FakeFragment"
+        android:name="com.teamenergy.ui.notification.NotificationFragment"
         android:label="" />
 
 </navigation>
